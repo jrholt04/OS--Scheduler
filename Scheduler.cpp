@@ -82,5 +82,5 @@ int main (int argc, char **argv) {
     //     cout << "id: " << PCBList[i].getId() << endl;
     // }
     
-    return 1;           
+    return 0;           
 }

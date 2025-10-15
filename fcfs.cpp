@@ -8,10 +8,25 @@
 #include <vector>
 #include <cstdio>
 #include "PCB.h"
+#include "fcfs.h"
 
 using namespace std;
 
 void fcfs(vector<PCB> tasks, bool verbose){
+    vector<PCB> fcfsV = createFcfsV(tasks);
+    int avgWait = getAvgWait(fcfsV);
+
+    if (verbose){
+        //create a verbose play by play
+        // Print: when it entered, when it executed, and how long it executed for
+    }
+    
+    cout << "average wait time of fcfs: " << avgWait << endl;
+
+    return;
+}
+
+vector<PCB> createFcfsV(vector<PCB> tasks){
     vector<PCB> fcfsV;
 
     //insert sort
@@ -24,8 +39,20 @@ void fcfs(vector<PCB> tasks, bool verbose){
         }
         fcfsV.insert(fcfsV.begin() + (j + 1), tasks[i]);
     }
-    
+
+    return fcfsV;
+}
+
+int getAvgWait(vector<PCB> fcfsV){
+    int runningTime = 0;
+    int totalWait = 0;
+    int avgWait;
     for (int i = 0; i < fcfsV.size(); i++){
-        cout << "id: " << fcfsV[i].getId() << endl;
+        totalWait = totalWait + (runningTime - fcfsV[i].getArrivalTime() );
+        runningTime = runningTime + fcfsV[i].getBurst();
     }
+    
+    avgWait = totalWait / fcfsV.size();
+
+    return avgWait; 
 }
