@@ -1,5 +1,5 @@
 // File: SchedulerMain.cpp
-// Author: Jackson Holt, Transy U
+// Author: N Neagle, J Holt, and A Seng, Transy U
 // Course: CS 3074 Operating Systems
 //
 // Main Program for the a model scheudling algorithm
@@ -7,6 +7,9 @@
 #include <string>
 #include <iostream>
 #include <cstdio>
+#include <vector>
+#include "fcfs.h"
+#include "PCB.h"
 
 using namespace std;
 
@@ -17,6 +20,7 @@ int main (int argc, char **argv) {
     bool premptive = false;
     bool verbose = false;
     int quanta = 10;
+    vector<PCB> PCBList;
 
     for (int i = 1; i < argc; ++i) { // start at 1 to skip program name
         string arg = argv[i];
@@ -69,6 +73,14 @@ int main (int argc, char **argv) {
     cout << "premptive: " << premptive << endl;
     cout << "quanta: " << quanta << endl;
     cout << "verbose: " << verbose << endl;
+
+    PCBList = PCB::readPCBFile(fileName);
+
+    fcfs(PCBList, false);
+
+    // for (int i = 0; i < PCBList.size(); i++){
+    //     cout << "id: " << PCBList[i].getId() << endl;
+    // }
     
     return 1;           
 }

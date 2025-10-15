@@ -86,9 +86,8 @@ void PCB::setBurst(int inputBurst) {
 
 // setId
 void PCB::setId(string inputId) {
-  // depending on how the input file looks, we may need to append the P_
   //id = inputId;
-  id = "P_" + inputId;
+  id = inputId;
 }
 
 // operator=
@@ -106,6 +105,35 @@ PCB& PCB::operator= (const PCB& other) {
   return *this;
 }
 
+// something to take in a PCB from the file
+vector<PCB> PCB::readPCBFile(string fileName){
+  vector<PCB> PCBList;
+  ifstream input;
+  string id;
+  int arrivalTime;
+  int totalCPUBurst;
+  int priority;
+  
+  input.open(fileName);
+  if (!input){
+      cout << "file not found" << endl;
+      exit(0);
+  }
 
+  while (input >> id){
+    PCB tempPCB;
+    input >> arrivalTime;
+    input >> totalCPUBurst;
+    input >> priority;  
 
-// something to take in a PCB from the file?
+    tempPCB.setId(id);
+    tempPCB.setArrivalTime(arrivalTime);
+    tempPCB.setBurst(totalCPUBurst);
+    tempPCB.setPriority(priority);
+
+    PCBList.push_back(tempPCB);
+  }
+
+  return PCBList;
+}
+

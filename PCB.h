@@ -10,6 +10,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 using namespace std;
 
 class PCB {
@@ -57,10 +58,13 @@ class PCB {
   void setId(string inputId);
 
   // reads in (something) and fills in the entire PCB
-  //  bool read(ifstream& inFile);   // contemplating if we should have this in the class for the PCB or elsewhere. If it is here, should we have it take in the file or a string we get from the file elsewhere? getline could work here. also, does the file have those headder columns? - NN
+  // bool read(ifstream& inFile);   // contemplating if we should have this in the class for the PCB or elsewhere. If it is here, should we have it take in the file or a string we get from the file elsewhere? getline could work here. also, does the file have those headder columns? - NN
 
   // overloaded =; allows us to copy PCBs using PCB1 = PCB2;
   PCB& operator=(const PCB& other);
+
+  //read pcb file and return a vector of pcb 
+  static vector<PCB> readPCBFile(string fileName);
   
  private:
   string state;
