@@ -12,20 +12,20 @@
 using namespace std;
 
 void fcfs(vector<PCB> tasks, bool verbose){
-    vector<PCB> fcfsList;
+    vector<PCB> fcfsV;
 
     //insert sort
-    fcfsList.push_back(tasks[0]);
+    fcfsV.push_back(tasks[0]);
     for (size_t i = 1; i < tasks.size(); ++i) {
-        int j = fcfsList.size() - 1;
+        int j = fcfsV.size() - 1;
 
-        while (j >= 0 && fcfsList[j].getArrivalTime() > tasks[i].getArrivalTime()) {
+        while (j >= 0 && fcfsV[j].getArrivalTime() > tasks[i].getArrivalTime()) {
             --j;
         }
-        fcfsList.insert(fcfsList.begin() + (j + 1), tasks[i]);
+        fcfsV.insert(fcfsV.begin() + (j + 1), tasks[i]);
     }
     
-    for (int i = 0; i < fcfsList.size(); i++){
-        cout << "id: " << fcfsList[i].getId() << endl;
+    for (int i = 0; i < fcfsV.size(); i++){
+        cout << "id: " << fcfsV[i].getId() << endl;
     }
 }

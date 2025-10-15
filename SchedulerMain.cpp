@@ -76,7 +76,7 @@ int main (int argc, char **argv) {
 
     PCBList = PCB::readPCBFile(fileName);
 
-    fcfs(PCBList, false);
+    fcfs(PCBList, verbose);
 
     // for (int i = 0; i < PCBList.size(); i++){
     //     cout << "id: " << PCBList[i].getId() << endl;

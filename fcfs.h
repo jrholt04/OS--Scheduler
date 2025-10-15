@@ -11,4 +11,5 @@
 
 using namespace std;
 
+// Main function that will immitate fcfs alg
 void fcfs(vector<PCB> tasks, bool verbose);
