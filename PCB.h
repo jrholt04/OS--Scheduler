@@ -38,6 +38,9 @@ class PCB {
   // return the ID of the PCB
   string getId(void);
 
+  // get execute time 
+  int getStartTime(void);
+
   // prints out the contents of the PCB. for debug use only
   void debugPrintPCB(void);
   
@@ -57,6 +60,9 @@ class PCB {
   // sets the ID of the PCB
   void setId(string inputId);
 
+  //
+  void setStartTime(int time);
+
   // reads in (something) and fills in the entire PCB
   // bool read(ifstream& inFile);   // contemplating if we should have this in the class for the PCB or elsewhere. If it is here, should we have it take in the file or a string we get from the file elsewhere? getline could work here. also, does the file have those headder columns? - NN
 
@@ -72,6 +78,7 @@ class PCB {
   int arrivalTime;
   int burst;
   string id;
+  int startTime;
   
 };
   

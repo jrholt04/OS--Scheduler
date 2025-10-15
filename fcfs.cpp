@@ -12,13 +12,17 @@
 
 using namespace std;
 
-void fcfs(vector<PCB> tasks, bool verbose){
-    vector<PCB> fcfsV = createFcfsV(tasks);
-    int avgWait = getAvgWait(fcfsV);
+void fcfs(vector<PCB> processes, bool verbose){
+    vector<PCB> scheduledProcesses = createFcfsSchedule(processes);
+    int avgWait = getAvgWait(scheduledProcesses);
 
     if (verbose){
-        //create a verbose play by play
-        // Print: when it entered, when it executed, and how long it executed for
+        for (int i = 0; i < scheduledProcesses.size(); i++){
+            cout << "id: " << scheduledProcesses[i].getId() << endl;
+            cout << "executed for: " << scheduledProcesses[i].getBurst() << endl;
+            cout << "enter time: " << scheduledProcesses[i].getArrivalTime() << endl;
+            cout << "execution at: " << scheduledProcesses[i].getStartTime() << endl << endl;
+        }
     }
     
     cout << "average wait time of fcfs: " << avgWait << endl;
@@ -26,33 +30,35 @@ void fcfs(vector<PCB> tasks, bool verbose){
     return;
 }
 
-vector<PCB> createFcfsV(vector<PCB> tasks){
-    vector<PCB> fcfsV;
+vector<PCB> createFcfsSchedule(vector<PCB> processes){
+    vector<PCB> scheduledProcesses;
 
-    //insert sort
-    fcfsV.push_back(tasks[0]);
-    for (size_t i = 1; i < tasks.size(); ++i) {
-        int j = fcfsV.size() - 1;
+    //insert sort based on arrival time
+    scheduledProcesses.push_back(processes[0]);
+    for (size_t i = 1; i < processes.size(); ++i) {
+        int j = scheduledProcesses.size() - 1;
 
-        while (j >= 0 && fcfsV[j].getArrivalTime() > tasks[i].getArrivalTime()) {
+        while (j >= 0 && scheduledProcesses[j].getArrivalTime() > processes[i].getArrivalTime()) {
             --j;
         }
-        fcfsV.insert(fcfsV.begin() + (j + 1), tasks[i]);
+        scheduledProcesses.insert(scheduledProcesses.begin() + (j + 1), processes[i]);
     }
 
-    return fcfsV;
+    return scheduledProcesses;
 }
 
-int getAvgWait(vector<PCB> fcfsV){
-    int runningTime = 0;
+int getAvgWait(vector<PCB>& scheduledProcesses){
+    int currentTime = 0;
     int totalWait = 0;
     int avgWait;
-    for (int i = 0; i < fcfsV.size(); i++){
-        totalWait = totalWait + (runningTime - fcfsV[i].getArrivalTime() );
-        runningTime = runningTime + fcfsV[i].getBurst();
+    for (int i = 0; i < scheduledProcesses.size(); i++){
+        totalWait = totalWait + (currentTime - scheduledProcesses[i].getArrivalTime());
+        // Updates PCB start time for later reporting.
+        scheduledProcesses[i].setStartTime(currentTime); 
+        currentTime = currentTime + scheduledProcesses[i].getBurst();
     }
     
-    avgWait = totalWait / fcfsV.size();
+    avgWait = totalWait / scheduledProcesses.size();
 
     return avgWait; 
 }

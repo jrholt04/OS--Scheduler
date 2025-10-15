@@ -14,7 +14,8 @@ PCB::PCB(void) {
   priority = 0;
   arrivalTime = 0;
   burst = 0;
-  id = "P_test";
+  startTime = 0;
+  id = " ";
 }
 
 // destructor
@@ -47,6 +48,11 @@ int PCB::getBurst(void) {
 // getId
 string PCB::getId(void) {
   return id;
+}
+
+// GetStartTime 
+int PCB::getStartTime(void){
+  return startTime;
 }
 
 // debugPrintPCB
@@ -90,7 +96,14 @@ void PCB::setId(string inputId) {
   id = inputId;
 }
 
-// operator=
+// setStartTime
+void PCB::setStartTime(int time){
+  startTime = time;
+  return;
+}
+
+
+
 PCB& PCB::operator= (const PCB& other) {
   if (this == &other) {
     return *this;

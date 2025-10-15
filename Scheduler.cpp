@@ -24,22 +24,22 @@ int main (int argc, char **argv) {
 
     for (int i = 1; i < argc; ++i) { // start at 1 to skip program name
         string arg = argv[i];
-        string arg2 = argv[ i + 1 ];
         
-        if (arg == "--type") {
-            if (arg2 == "FCFS"){
+        if (arg == "--type") { 
+            string type = argv[i +1];
+            if (type == "FCFS"){
                 type = "fcfs";
                 i++;
             }
-            else if (arg2 == "RR"){
+            else if (type == "RR"){
                 type = "rr";
                 i++;
             }
-            else if (arg2 == "SJF"){
+            else if (type == "SJF"){
                 type = "sjf";
                 i++;
             }
-            else if (arg2 == "Priority") {
+            else if (type == "Priority") {
                 type = "priority";
                 i++;
             }
@@ -55,7 +55,8 @@ int main (int argc, char **argv) {
        }
 
        if (arg == "--quanta"){
-          quanta = stoi(arg2);
+            int inputQuanta = stoi(argv[i + 1]);
+            quanta = inputQuanta;
        }
 
        if (arg == "--premptive"){
@@ -63,7 +64,7 @@ int main (int argc, char **argv) {
        }
 
        if (arg == "--file"){
-            fileName = arg2;
+            fileName = argv[i + 1];
             i++;
        }
 
@@ -78,9 +79,5 @@ int main (int argc, char **argv) {
 
     fcfs(PCBList, verbose);
 
-    // for (int i = 0; i < PCBList.size(); i++){
-    //     cout << "id: " << PCBList[i].getId() << endl;
-    // }
-    
     return 0;           
 }
