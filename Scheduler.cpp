@@ -9,6 +9,7 @@
 #include <cstdio>
 #include <vector>
 #include "fcfs.h"
+#include "rr.h"
 #include "PCB.h"
 
 using namespace std;
@@ -78,6 +79,7 @@ int main (int argc, char **argv) {
     PCBList = PCB::readPCBFile(fileName);
 
     fcfs(PCBList, verbose);
+    rr(PCBList, verbose, quanta);
 
     return 0;           
 }
