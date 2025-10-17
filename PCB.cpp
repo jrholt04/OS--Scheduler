@@ -118,7 +118,7 @@ PCB& PCB::operator= (const PCB& other) {
   return *this;
 }
 
-// something to take in a PCB from the file
+// creates PCB vector from the file
 vector<PCB> PCB::readPCBFile(string fileName){
   vector<PCB> PCBList;
   ifstream input;
