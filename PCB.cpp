@@ -147,6 +147,7 @@ vector<PCB> PCB::readPCBFile(string fileName){
     PCBList.push_back(tempPCB);
   }
 
+  // if id is not valid then do not continue
   if (id == ""){
     cout << "file data is not valid" << endl;
     exit(0);
