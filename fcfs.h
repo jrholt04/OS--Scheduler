@@ -21,6 +21,6 @@ void fcfs(vector<PCB> processes, bool verbose);
 vector<PCB> createFcfsSchedule(vector<PCB> processes);
 
 // Calculates and returns the average waiting time for a set of processes
-int getAvgWait(vector<PCB>& scheduledProcesses);
+double getAvgWait(vector<PCB>& scheduledProcesses);
 
 #endif

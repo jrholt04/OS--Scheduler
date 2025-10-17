@@ -14,7 +14,7 @@ using namespace std;
 
 void fcfs(vector<PCB> processes, bool verbose){
     vector<PCB> scheduledProcesses = createFcfsSchedule(processes);
-    int avgWait = getAvgWait(scheduledProcesses);
+    double avgWait = getAvgWait(scheduledProcesses);
 
     if (verbose){
         for (int i = 0; i < scheduledProcesses.size(); i++){
@@ -47,10 +47,10 @@ vector<PCB> createFcfsSchedule(vector<PCB> processes){
     return scheduledProcesses;
 }
 
-int getAvgWait(vector<PCB>& scheduledProcesses){
-    int currentTime = 0;
-    int totalWait = 0;
-    int avgWait;
+double getAvgWait(vector<PCB>& scheduledProcesses){
+    double currentTime = 0.0;
+    double totalWait = 0.0;
+    double avgWait;
     for (int i = 0; i < scheduledProcesses.size(); i++){
         totalWait = totalWait + (currentTime - scheduledProcesses[i].getArrivalTime());
         // Updates PCB start time for later reporting.
