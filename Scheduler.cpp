@@ -10,7 +10,7 @@
 #include <vector>
 #include "fcfs.h"
 #include "rr.h"
-#include "presj.h"
+#include "presjf.h"
 #include "nonpresjf.h"
 #include "PCB.h"
 
@@ -29,20 +29,20 @@ int main (int argc, char **argv) {
         string arg = argv[i];
         
         if (arg == "--type") { 
-            string type = argv[i +1];
-            if (type == "FCFS"){
+            string inputType = argv[i + 1];
+            if (inputType == "FCFS"){
                 type = "fcfs";
                 i++;
             }
-            else if (type == "RR"){
+            else if (inputType == "RR"){
                 type = "rr";
                 i++;
             }
-            else if (type == "SJF"){
+            else if (inputType == "SJF"){
                 type = "sjf";
                 i++;
             }
-            else if (type == "Priority") {
+            else if (inputType == "Priority") {
                 type = "priority";
                 i++;
             }
@@ -72,12 +72,15 @@ int main (int argc, char **argv) {
        }
 
     }
-    cout << "type: "<<type << endl;
-    cout << "fileName: " << fileName << endl;
-    cout << "premptive: " << premptive << endl;
-    cout << "quanta: " << quanta << endl;
-    cout << "verbose: " << verbose << endl;
 
+    if (verbose){
+        cout << "type: "<<type << endl;
+        cout << "fileName: " << fileName << endl;
+        cout << "premptive: " << premptive << endl;
+        cout << "quanta: " << quanta << endl;
+        cout << "verbose: " << verbose << endl;
+    }
+   
     PCBList = PCB::readPCBFile(fileName);
 
     if (type == "fcfs") {

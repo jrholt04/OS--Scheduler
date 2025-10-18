@@ -66,5 +66,5 @@ void nonpresjf(vector<PCB> tasks, bool verbose) {
         }
     }
 
-    cout << "average wait time of nonpresjf: " << avgWait << endl;
+    cout << "average wait time of nonpremptive sjf: " << avgWait << endl;
 }

@@ -1,8 +1,8 @@
 ##makefile for scheduler
 ##N Neagle, J Holt, and A Seng
 
-sched: Scheduler.o PCB.o fcfs.o rr.o nonpresjf.o presj.o
-	g++ Scheduler.o fcfs.o PCB.o rr.o nonpresjf.o presj.o -o sched
+sched: Scheduler.o PCB.o fcfs.o rr.o nonpresjf.o presjf.o
+	g++ Scheduler.o fcfs.o PCB.o rr.o nonpresjf.o presjf.o -o sched
 
 Scheduler.o: Scheduler.cpp
 	g++ -c Scheduler.cpp
@@ -19,5 +19,5 @@ rr.o: rr.cpp
 nonpresjf.o: nonpresjf.cpp
 	g++ -c nonpresjf.cpp
 
-presj.o: presj.cpp
-	g++ -c presj.cpp
+presjf.o: presjf.cpp
+	g++ -c presjf.cpp
