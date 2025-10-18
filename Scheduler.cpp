@@ -1,8 +1,8 @@
-// File: SchedulerMain.cpp
+// File: Scheduler.cpp 
 // Author: N Neagle, J Holt, and A Seng, Transy U
 // Course: CS 3074 Operating Systems
 //
-// Main Program for the a model scheudling algorithm
+// Main Program for a model scheduling algorithm 
 
 #include <string>
 #include <iostream>
@@ -10,6 +10,8 @@
 #include <vector>
 #include "fcfs.h"
 #include "rr.h"
+#include "presj.h"
+#include "nonpresjf.h"
 #include "PCB.h"
 
 using namespace std;
@@ -78,8 +80,20 @@ int main (int argc, char **argv) {
 
     PCBList = PCB::readPCBFile(fileName);
 
-    fcfs(PCBList, verbose);
-    rr(PCBList, verbose, quanta);
+    if (type == "fcfs") {
+        fcfs(PCBList, verbose);
+    }
+    else if (type == "rr") {
+        rr(PCBList, verbose, quanta);
+    }
+    else if (type == "sjf") {
+        if (premptive) {
+            presj(PCBList, verbose);
+        }
+        else {
+            nonpresjf(PCBList, verbose);
+        }
+    }
 
     return 0;           
 }
