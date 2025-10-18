@@ -52,6 +52,12 @@ double getAvgWait(vector<PCB>& scheduledProcesses){
     double totalWait = 0.0;
     double avgWait;
     for (int i = 0; i < scheduledProcesses.size(); i++){
+        
+        ///need to account for if there is idle time
+        if (currentTime < scheduledProcesses[i].getArrivalTime()) {
+            currentTime = scheduledProcesses[i].getArrivalTime();
+        }
+        
         totalWait = totalWait + (currentTime - scheduledProcesses[i].getArrivalTime());
         // Updates PCB start time for later reporting.
         scheduledProcesses[i].setStartTime(currentTime); 
