@@ -4,7 +4,7 @@
 sched: Scheduler.o PCB.o fcfs.o rr.o sjf.o priority.o schedulerTools.o
 	g++ Scheduler.o fcfs.o PCB.o rr.o sjf.o priority.o schedulerTools.o -o sched
 
-Scheduler.o: Scheduler.cpp PCB.o
+Scheduler.o: Scheduler.cpp PCB.o fcfs.o rr.o sjf.o priority.o schedulerTools.o
 	g++ -c Scheduler.cpp
 
 PCB.o: PCB.cpp PCB.h
@@ -16,7 +16,7 @@ fcfs.o: fcfs.cpp fcfs.h PCB.o
 rr.o: rr.cpp rr.h PCB.o
 	g++ -c rr.cpp
 
-nonpresjf.o: sjf.cpp sjf.h PCB.o
+sjf.o: sjf.cpp sjf.h PCB.o
 	g++ -c sjf.cpp
 
 priority.o: priority.cpp priority.h PCB.o
