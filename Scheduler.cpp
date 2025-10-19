@@ -12,7 +12,9 @@
 #include "rr.h"
 #include "presjf.h"
 #include "nonpresjf.h"
+#include "priority.h"
 #include "PCB.h"
+#include "schedulerTools.h"
 
 using namespace std;
 
@@ -30,49 +32,46 @@ int main (int argc, char **argv) {
         
         if (arg == "--type") { 
             string inputType = argv[i + 1];
-            if (inputType == "FCFS"){
+            if (inputType == "FCFS" || inputType == "fcfs"){
                 type = "fcfs";
                 i++;
             }
-            else if (inputType == "RR"){
+            else if (inputType == "RR" || inputType == "rr"){
                 type = "rr";
                 i++;
             }
-            else if (inputType == "SJF"){
+            else if (inputType == "SJF" || inputType == "sjf"){
                 type = "sjf";
                 i++;
             }
-            else if (inputType == "Priority") {
+            else if (inputType == "priority" || inputType == "PRIORITY" || inputType == "Priority") {
                 type = "priority";
                 i++;
             }
             else{
-                cout << "algorithm type not found" << endl;
+                cout << "Algorithm type not found" << endl;
                 return 0;
             }
-            
         }
-
-       if (arg == "--verbose"){
+       if (arg == "--verbose" || arg == "--v"){
             verbose = true;
        }
-
-       if (arg == "--quanta"){
+       if (arg == "--quanta" || arg == "--q"){
             int inputQuanta = stoi(argv[i + 1]);
             quanta = inputQuanta;
        }
-
-       if (arg == "--premptive"){
+       if (arg == "--preemptive" || arg == "--p"){
             premptive = true;
        }
-
-       if (arg == "--file"){
+       if (arg == "--file" || arg == "--f"){
             fileName = argv[i + 1];
             i++;
        }
-
+       if (arg == "--help" || arg == "--h") {
+	 printSchedulerHelp();
+	 return 0;
+       }
     }
-
     if (verbose){
         cout << "type: "<<type << endl;
         cout << "fileName: " << fileName << endl;
@@ -82,7 +81,7 @@ int main (int argc, char **argv) {
     }
    
     PCBList = PCB::readPCBFile(fileName);
-
+    
     if (type == "fcfs") {
         fcfs(PCBList, verbose);
     }
@@ -91,12 +90,20 @@ int main (int argc, char **argv) {
     }
     else if (type == "sjf") {
         if (premptive) {
-            presj(PCBList, verbose);
+            presjf(PCBList, verbose);
         }
         else {
-            nonpresjf(PCBList, verbose);
+            sjf(PCBList, verbose);
         }
     }
-
+    else if (type == "priority") {
+      if (premptive) {
+	prePriority(PCBList, verbose);
+      }
+      else {
+	nonprePriority(PCBList, verbose);
+      }
+    }
+    
     return 0;           
 }
