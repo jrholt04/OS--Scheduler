@@ -10,8 +10,8 @@
 #include <vector>
 #include "fcfs.h"
 #include "rr.h"
-#include "sjf.h"
 #include "priority.h"
+#include "sjf.h"
 #include "PCB.h"
 #include "schedulerTools.h"
 
