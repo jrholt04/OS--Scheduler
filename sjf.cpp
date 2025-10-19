@@ -9,7 +9,7 @@
 #include <string>
 #include <cstdio>
 #include "PCB.h"
-#include "presjf.h"
+#include "sjf.h"
 #include "schedulerTools.h"
 
 using namespace std;
@@ -127,3 +127,4 @@ void presjfSimulation(vector<PCB> PCBList, vector<int>& waitTimes, vector<int>& 
   }
   return;
 }
+
