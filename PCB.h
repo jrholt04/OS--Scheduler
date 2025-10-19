@@ -1,5 +1,5 @@
 // FILE: PCB.h
-// N Neagle, J Holt, and A Seng, Transylvania University
+// Authors: J Holt, N Neagle, and A Seng, Transylvania University
 // CS 3074, Fall 2025
 
 // Interface - PCB class
@@ -23,26 +23,23 @@ class PCB {
   ~PCB(void);
 
   // accessors
-  // return the state of the PCB (or should we say process)
-  string getState(void);
-  
   // return the priority of the PCB
-  int getPriority(void);
+  int getPriority(void) const;
   
   // return the arrival time of the PCB
-  int getArrivalTime(void);
+  int getArrivalTime(void) const;
   
   // return the CPU burst time of the PCB
-  int getBurst(void);
+  int getBurst(void) const;
 
   // return the ID of the PCB
-  string getId(void);
+  string getId(void) const;
 
   // get execute time 
-  int getStartTime(void);
+  int getStartTime(void) const;
 
   // prints out the contents of the PCB. for debug use only
-  void debugPrintPCB(void);
+  void debugPrintPCB(void) const;
   
   // mutators
   // sets the state of the PCB
@@ -60,11 +57,8 @@ class PCB {
   // sets the ID of the PCB
   void setId(string inputId);
 
-  //
+  // sets the start time of the PCB
   void setStartTime(int time);
-
-  // reads in (something) and fills in the entire PCB
-  // bool read(ifstream& inFile);   // contemplating if we should have this in the class for the PCB or elsewhere. If it is here, should we have it take in the file or a string we get from the file elsewhere? getline could work here. also, does the file have those headder columns? - NN
 
   // overloaded =; allows us to copy PCBs using PCB1 = PCB2;
   PCB& operator=(const PCB& other);
@@ -73,13 +67,11 @@ class PCB {
   static vector<PCB> readPCBFile(string fileName);
   
  private:
-  string state;
   int priority;
   int arrivalTime;
   int burst;
   string id;
   int startTime;
-  
 };
   
 #endif // PCB_H

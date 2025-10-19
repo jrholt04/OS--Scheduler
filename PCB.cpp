@@ -1,7 +1,6 @@
 // FILE: PCB.cpp
-// N Neagle, J Holt, and A Seng, Transylvania University
+// Authors: J Holt, N Neagle and A Seng, Transylvania University
 // CS 3074, Fall 2025
-
 
 // Implementation - PCB class
 
@@ -10,7 +9,6 @@
 // constructor
 // sets private variables
 PCB::PCB(void) {
-  state = "testing";
   priority = 0;
   arrivalTime = 0;
   burst = 0;
@@ -24,54 +22,41 @@ PCB::~PCB(void) {}
 // public member functions
 
 // accessors
-
-// getState
-string PCB::getState(void) {
-  return state;
-}
-
 // getPriority
-int PCB::getPriority(void) {
+int PCB::getPriority(void) const{
   return priority;
 }
 
 // getArrivalTime
-int PCB::getArrivalTime(void) {
+int PCB::getArrivalTime(void) const{
   return arrivalTime;
 }
 
 // getBurst
-int PCB::getBurst(void) {
+int PCB::getBurst(void) const{
   return burst;
 }
 
 // getId
-string PCB::getId(void) {
+string PCB::getId(void) const{
   return id;
 }
 
 // GetStartTime 
-int PCB::getStartTime(void){
+int PCB::getStartTime(void) const{
   return startTime;
 }
 
 // debugPrintPCB
-void PCB::debugPrintPCB (void) {
+void PCB::debugPrintPCB (void) const{
   cout << "ID: " << id << endl;
-  cout << "STATE: " << state << endl;
   cout << "PRIORITY: " << priority << endl;
   cout << "ARRIVAL: " << arrivalTime << endl;
   cout << "BURST: " << burst << endl;
+  //return;
 }
   
 // mutators
-
-// setState
-void PCB::setState(string inputState) {
-  state = inputState;
-  return;
-}
-
 // setPriority
 void PCB::setPriority(int inputPriority) {
   priority = inputPriority;
@@ -92,8 +77,8 @@ void PCB::setBurst(int inputBurst) {
 
 // setId
 void PCB::setId(string inputId) {
-  //id = inputId;
   id = inputId;
+  return;
 }
 
 // setStartTime
@@ -102,15 +87,13 @@ void PCB::setStartTime(int time){
   return;
 }
 
-
-
+// overloaded =
 PCB& PCB::operator= (const PCB& other) {
   if (this == &other) {
     return *this;
   }
 
   id = other.id;
-  state = other.state;
   priority = other.priority;
   arrivalTime = other.arrivalTime;
   burst = other.burst;
@@ -129,7 +112,7 @@ vector<PCB> PCB::readPCBFile(string fileName){
   
   input.open(fileName);
   if (!input){
-      cout << "file not found" << endl;
+      cout << "File not found" << endl;
       exit(0);
   }
 
@@ -149,7 +132,7 @@ vector<PCB> PCB::readPCBFile(string fileName){
 
   // if id is not valid then do not continue
   if (id == ""){
-    cout << "file data is not valid" << endl;
+    cout << "File data is not valid" << endl;
     exit(0);
   }
 
