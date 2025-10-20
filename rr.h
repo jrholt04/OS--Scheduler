@@ -15,7 +15,7 @@
 using namespace std;
 
 // Inputs vector of PCB tasks, verbose flag, and time quanta
-void rr(vector<PCB> tasks, bool verbose, int quanta);
+double rr(vector<PCB> tasks, bool verbose, int quanta);
 
 // Computes start times and wait times for each process
 void rrSimulation(vector<PCB> PCBList, vector<int>& waitTimes, vector<int>& startTimes, int quanta);

@@ -12,13 +12,13 @@
 using namespace std;
 
 // Preemptive Priority Scheduler
-void prePriority(vector<PCB> tasks, bool verbose);
+double prePriority(vector<PCB> tasks, bool verbose);
 
 // Runs the simulation for the Preemptive Priority Scheduler
 void prePrioritySimulation(vector<PCB> PCBList, vector<int>& waitTimes, vector<int>& startTimes);
 
 // Non Preemptive Priority Scheduler
-void nonprePriority(vector<PCB> tasks, bool verbose);
+double nonprePriority(vector<PCB> tasks, bool verbose);
 
 // Runs the simulation for Non Preemptive Priority Scheduler
 void nonprePrioritySimulation(vector<PCB> PCBList, vector<int>& waitTimes, vector<int>& startTimes);

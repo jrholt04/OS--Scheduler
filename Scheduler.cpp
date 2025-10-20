@@ -86,25 +86,25 @@ int main (int argc, char **argv) {
     PCBList = PCB::readPCBFile(fileName);
     
     if (type == "fcfs") {
-        fcfs(PCBList, verbose);
+        cout << "average wait for FCFS: " << fcfs(PCBList, verbose) << endl;
     }
     else if (type == "rr") {
-        rr(PCBList, verbose, quanta);
+        cout << "average wait for RR: " << rr(PCBList, verbose, quanta) << endl;
     }
     else if (type == "sjf") {
         if (premptive) {
-            presjf(PCBList, verbose);
+            cout << "average wait for preemptive SJF: "<< presjf(PCBList, verbose) << endl;
         }
         else {
-            sjf(PCBList, verbose);
+            cout << "average wait for SJF: "<< sjf(PCBList, verbose) << endl;
         }
     }
     else if (type == "priority") {
       if (premptive) {
-	prePriority(PCBList, verbose);
+	    cout << "average wait for preemptive priority: "<< prePriority(PCBList, verbose) << endl;
       }
       else {
-	nonprePriority(PCBList, verbose);
+	    cout << "average wait for priority: "<< nonprePriority(PCBList, verbose) << endl;
       }
     }
     

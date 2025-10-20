@@ -13,7 +13,7 @@
 #include "schedulerTools.h"
 using namespace std;
 
-void prePriority(vector<PCB> tasks, bool verbose) {
+double prePriority(vector<PCB> tasks, bool verbose) {
   vector<int> waitTimes(tasks.size(), 0);
   vector<int> startTimes(tasks.size(), -1);
 
@@ -24,9 +24,8 @@ void prePriority(vector<PCB> tasks, bool verbose) {
   if (verbose) {
     printVerbose(tasks, startTimes, waitTimes, "Premptive Priority");
   }
-  
-  cout << "Average wait time of Preemptive Priority: " << avgWait << endl; 
-  return;
+
+  return avgWait;
 }
 
 void prePrioritySimulation(vector<PCB> PCBList, vector<int>& waitTimes, vector<int>& startTimes) {
@@ -77,7 +76,7 @@ void prePrioritySimulation(vector<PCB> PCBList, vector<int>& waitTimes, vector<i
   }
 }
 
-void nonprePriority(vector<PCB> tasks, bool verbose) {
+double nonprePriority(vector<PCB> tasks, bool verbose) {
   vector<int> startTimes(tasks.size(), -1);
   vector<int> waitTimes(tasks.size(), 0);
   
@@ -89,9 +88,7 @@ void nonprePriority(vector<PCB> tasks, bool verbose) {
     printVerbose(tasks, startTimes, waitTimes, "Non-Preemptive Priority");
   }
   
-  cout << "Average wait time of Non-Preemptive Priority: " << avgWait << endl;
-  
-  return;
+  return avgWait;
 }
 
 void nonprePrioritySimulation(vector<PCB> PCBList, vector<int>& waitTimes, vector<int>& startTimes) {

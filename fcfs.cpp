@@ -12,7 +12,7 @@
 
 using namespace std;
 
-void fcfs(vector<PCB> processes, bool verbose){
+double fcfs(vector<PCB> processes, bool verbose){
     vector<PCB> scheduledProcesses = createFcfsSchedule(processes);
     vector<int> waitTimes;
     double avgWait = getAvgWait(scheduledProcesses, waitTimes);
@@ -27,10 +27,8 @@ void fcfs(vector<PCB> processes, bool verbose){
             cout << "waited for: " << waitTimes[i] << endl << endl;
         }
     }
-    
-    cout << "average wait time of fcfs: " << avgWait << endl;
 
-    return;
+    return avgWait;
 }
 
 vector<PCB> createFcfsSchedule(vector<PCB> processes){

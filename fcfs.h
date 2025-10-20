@@ -15,7 +15,7 @@
 using namespace std;
 
 // Simulates the FCFS scheduling algorithm.
-void fcfs(vector<PCB> processes, bool verbose);
+double fcfs(vector<PCB> processes, bool verbose);
 
 // Returns a new vector of PCBs sorted by arrival time (earliest first).
 vector<PCB> createFcfsSchedule(vector<PCB> processes);

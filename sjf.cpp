@@ -14,7 +14,7 @@
 
 using namespace std;
 
-void sjf(vector<PCB> tasks, bool verbose) {
+double sjf(vector<PCB> tasks, bool verbose) {
   vector<int> waitTimes(tasks.size(), 0);
   vector<int> startTimes(tasks.size(), -1);
 
@@ -26,8 +26,7 @@ void sjf(vector<PCB> tasks, bool verbose) {
     printVerbose(tasks, startTimes, waitTimes, "Non Preemptive SJF");
   }
 
-  cout << "Average wait time of Non Preemptive SJF: " << avgWait << endl;
-  return;
+  return avgWait;
 }
 
 void sjfSimulation(vector<PCB> PCBList, vector<int>& waitTimes, vector<int>& startTimes) {
@@ -63,7 +62,7 @@ void sjfSimulation(vector<PCB> PCBList, vector<int>& waitTimes, vector<int>& sta
   }
 }
 
-void presjf(vector<PCB> tasks, bool verbose) {
+double presjf(vector<PCB> tasks, bool verbose) {
   vector<int> waitTimes(tasks.size(), 0);
   vector<int> startTimes(tasks.size(), -1);
 
@@ -75,8 +74,7 @@ void presjf(vector<PCB> tasks, bool verbose) {
     printVerbose(tasks, startTimes, waitTimes, "Preemptive SJF");
   }
   
-  cout << "Average wait time of Preemptive SJF: " << avgWait << endl;
-  return;
+  return avgWait;
 }
 
 void presjfSimulation(vector<PCB> PCBList, vector<int>& waitTimes, vector<int>& startTimes) {

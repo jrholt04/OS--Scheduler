@@ -12,7 +12,7 @@
 
 using namespace std;
 
-void rr(vector<PCB> tasks, bool verbose, int quanta) {
+double rr(vector<PCB> tasks, bool verbose, int quanta) {
     vector<int> waitTimes(tasks.size(), 0);
     vector<int> startTimes(tasks.size(), -1);
 
@@ -35,7 +35,7 @@ void rr(vector<PCB> tasks, bool verbose, int quanta) {
         }
     }
 
-    cout << "Average wait time of Round Robin: " << avgWait << endl;
+   return avgWait;
 }
 
 void rrSimulation(vector<PCB> PCBList, vector<int>& waitTimes, vector<int>& startTimes, int quanta) {

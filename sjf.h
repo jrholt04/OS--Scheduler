@@ -15,13 +15,13 @@
 using namespace std;
 
 // Non Preemptive SJF scheduler
-void sjf(vector<PCB> tasks, bool verbose);
+double sjf(vector<PCB> tasks, bool verbose);
 
 // Runs the simulation for Non Preemptive SJF Scheduler
 void sjfSimulation(vector<PCB> PCBList, vector<int>& waitTimes, vector<int>& startTimes);
 
 // Preemptive SJF scheduler
-void presjf(vector<PCB> tasks, bool verbose);
+double presjf(vector<PCB> tasks, bool verbose);
 
 // Runs the simulation for Preemptive SJF Scheduler
 void presjfSimulation(vector<PCB> PCBList, vector<int>& waitTimes, vector<int>& startTimes);
