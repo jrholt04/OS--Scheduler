@@ -1,5 +1,5 @@
 // File: rr.cpp
-// Author: N Neagle, J Holt, and A Seng, Transy U
+// Author: A Seng, J Holt,and N Neigel,  Transy U
 // Course: CS 3074 Operating Systems
 //
 // Implementation of Round Robin
