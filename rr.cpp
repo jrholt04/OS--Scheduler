@@ -1,5 +1,5 @@
 // File: rr.cpp
-// Author: J Holt, N Neagle, and A Seng, Transy U
+// Author: N Neagle, J Holt, and A Seng, Transy U
 // Course: CS 3074 Operating Systems
 //
 // Round Robin
@@ -20,37 +20,39 @@ void rr(vector<PCB> tasks, bool verbose, int quanta) {
     rrSimulation(tasks, waitTimes, startTimes, quanta);
 
     double avgWait = calculateAvgWait(waitTimes);
-    
+
     if (verbose) {
         printVerbose(tasks, startTimes, waitTimes, "Round Robin");
     }
 
-    // Output the average wait time for the RR algorithm
     cout << "Average wait time of Round Robin: " << avgWait << endl;
 }
 
-//Round Robin simulation, calculating wait times and start times based on arrival order, time quanta, and remaining burst times.
 void rrSimulation(vector<PCB> PCBList, vector<int>& waitTimes, vector<int>& startTimes, int quanta) {
-    // Sort all processes by their arrival time
+    // Sort all processes by arrival time and PID
     sort(PCBList.begin(), PCBList.end(), [](const PCB& a, const PCB& b) {
+        if (a.getArrivalTime() == b.getArrivalTime()) {
+            return a.getId() < b.getId(); 
+        }
         return a.getArrivalTime() < b.getArrivalTime();
     });
 
-    // Initialize remaining burst times for each process.
+    // remaining burst times for each process.
     int n = PCBList.size();
     vector<int> remainingBurst(n);
     for (int i = 0; i < n; i++) {
         remainingBurst[i] = PCBList[i].getBurst();
     }
-    
+
     queue<int> readyQueue;
 
-    // Keep track of simulation time, number completed, and next process to add
+    // simulation time, number completed, and next process 
     int time = 0;
     int completed = 0;
     int nextProcess = 0;
 
     while (completed < n) {
+        // Add any processes needed to ready queue
         while (nextProcess < n && PCBList[nextProcess].getArrivalTime() <= time) {
             readyQueue.push(nextProcess);
             nextProcess++;
@@ -60,25 +62,27 @@ void rrSimulation(vector<PCB> PCBList, vector<int>& waitTimes, vector<int>& star
             time++;
             continue;
         }
-        
+
         int i = readyQueue.front();
         readyQueue.pop();
 
+        // record start time
         if (startTimes[i] == -1) {
             startTimes[i] = time;
         }
-        
-        // Determine how long the process will run.
+
+        // how long the process will run
         int runTime = min(quanta, remainingBurst[i]);
         remainingBurst[i] -= runTime;
         time += runTime;
 
-        // Add any new arrivals that occurred during that run.
+        // Add any new arrivals 
         while (nextProcess < n && PCBList[nextProcess].getArrivalTime() <= time) {
             readyQueue.push(nextProcess);
             nextProcess++;
         }
 
+        // If the process still has burst time left, push it, else calculate wait time
         if (remainingBurst[i] > 0) {
             readyQueue.push(i);
         } else {
