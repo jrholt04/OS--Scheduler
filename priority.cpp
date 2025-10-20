@@ -47,8 +47,8 @@ void prePrioritySimulation(vector<PCB> PCBList, vector<int>& waitTimes, vector<i
     
     for (int i = 0; i < numberOfProcesses; i++) {
       if (!finished[i] && (PCBList[i].getArrivalTime() <= time) && (PCBList[i].getPriority() < minPriority) && (remainingTime[i] > 0)) {
-	minPriority = PCBList[i].getPriority();
-	minIndex = i;
+	      minPriority = PCBList[i].getPriority();
+	      minIndex = i;
       }
     }
     
@@ -63,7 +63,7 @@ void prePrioritySimulation(vector<PCB> PCBList, vector<int>& waitTimes, vector<i
     
     for (int i = 0; i < numberOfProcesses; i++) {
       if (i != minIndex && !finished[i] && PCBList[i].getArrivalTime() <= time) {
-	waitTimes[i]++;
+	      waitTimes[i]++;
       }
     }
     

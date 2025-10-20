@@ -46,7 +46,6 @@ int main (void) {
 
     cout << endl << "print w/ accessors" << endl;
     cout << "ID: " << testPCB.getId() << endl;
-    cout << "STATE: " << testPCB.getState() << endl;
     cout << "PRIORITY: " << testPCB.getPriority() << endl;
     cout << "ARRIVAL: " << testPCB.getArrivalTime() << endl;
     cout << "BURST: " << testPCB.getBurst() << endl;
