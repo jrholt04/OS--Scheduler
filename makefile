@@ -1,8 +1,8 @@
 ##makefile for scheduler
 ##N Neagle, J Holt, and A Seng
 
-sched: Scheduler.o PCB.o fcfs.o rr.o sjf.o priority.o schedulerTools.o
-	g++ Scheduler.o fcfs.o PCB.o rr.o sjf.o priority.o schedulerTools.o -o sched
+scheduler: Scheduler.o PCB.o fcfs.o rr.o sjf.o priority.o schedulerTools.o
+	g++ Scheduler.o fcfs.o PCB.o rr.o sjf.o priority.o schedulerTools.o -o scheduler
 
 Scheduler.o: Scheduler.cpp PCB.o fcfs.o rr.o sjf.o priority.o schedulerTools.o
 	g++ -c Scheduler.cpp
