@@ -6,10 +6,9 @@
 
 #include <iostream>
 #include <vector>
-#include <queue>
+#include <queue>          
 #include "PCB.h"
 #include "rr.h"
-#include "schedulerTools.h"
 
 using namespace std;
 
@@ -18,11 +17,22 @@ void rr(vector<PCB> tasks, bool verbose, int quanta) {
     vector<int> startTimes(tasks.size(), -1);
 
     rrSimulation(tasks, waitTimes, startTimes, quanta);
-
-    double avgWait = calculateAvgWait(waitTimes);
+    // avg wait time
+    double totalWait = 0.0;
+    for (int i = 0; i < waitTimes.size(); i++) {
+        totalWait += waitTimes[i];
+    }
+    double avgWait = totalWait / waitTimes.size();
 
     if (verbose) {
-        printVerbose(tasks, startTimes, waitTimes, "Round Robin");
+        cout << endl << "===== Round Robin Execution Details =====" << endl;
+        for (int i = 0; i < tasks.size(); i++) {
+            cout << "id: " << tasks[i].getId() << endl;
+            cout << "executed for: " << tasks[i].getBurst() << endl;
+            cout << "enter time: " << tasks[i].getArrivalTime() << endl;
+            cout << "execution at: " << startTimes[i] << endl;
+            cout << "wait time: " << waitTimes[i] << endl << endl;
+        }
     }
 
     cout << "Average wait time of Round Robin: " << avgWait << endl;
@@ -30,64 +40,55 @@ void rr(vector<PCB> tasks, bool verbose, int quanta) {
 
 void rrSimulation(vector<PCB> PCBList, vector<int>& waitTimes, vector<int>& startTimes, int quanta) {
     int n = PCBList.size();
+    
+    // Initialize remaining burst times for each process.
     vector<int> remainingBurst(n);
-
     for (int i = 0; i < n; i++) {
         remainingBurst[i] = PCBList[i].getBurst();
     }
 
-    // If two processes arrive at the same time, sort by PID.
-    vector<int> indices(n);
-    for (int i = 0; i < n; ++i) indices[i] = i;
-
-    sort(indices.begin(), indices.end(), [&](int a, int b) {
-        if (PCBList[a].getArrivalTime() == PCBList[b].getArrivalTime())
-            return PCBList[a].getPID() < PCBList[b].getPID();
-        return PCBList[a].getArrivalTime() < PCBList[b].getArrivalTime();
-    });
-
+    // Create the ready queue for processes ready to run.
     queue<int> readyQueue;
+
+    // simulation time, number completed, and next process to add
     int time = 0;
     int completed = 0;
-    int nextToArrive = 0;
+    int nextProcess = 0;
 
     while (completed < n) {
-        // Add processes that have arrived by this time
-        while (nextToArrive < n && PCBList[indices[nextToArrive]].getArrivalTime() <= time) {
-            readyQueue.push(indices[nextToArrive]);
-            nextToArrive++;
+        while (nextProcess < n && PCBList[nextProcess].getArrivalTime() <= time) {
+            readyQueue.push(nextProcess);
+            nextProcess++;
         }
 
-        // If queue is empty, CPU is idle
         if (readyQueue.empty()) {
             time++;
             continue;
         }
 
-        // Get next process to execute
         int i = readyQueue.front();
         readyQueue.pop();
 
-        // Record start time if this is the first execution
-        if (startTimes[i] == -1)
+        // record start time
+        if (startTimes[i] == -1) {
             startTimes[i] = time;
+        }
 
-        // Determine how long the process will run
+        // Determine how long the process will run.
         int runTime = min(quanta, remainingBurst[i]);
         remainingBurst[i] -= runTime;
         time += runTime;
 
-        // Add any new arrivals 
-        while (nextToArrive < n && PCBList[indices[nextToArrive]].getArrivalTime() <= time) {
-            readyQueue.push(indices[nextToArrive]);
-            nextToArrive++;
+        while (nextProcess < n && PCBList[nextProcess].getArrivalTime() <= time) {
+            readyQueue.push(nextProcess);
+            nextProcess++;
         }
 
-        // If still has time left, push to back of queue
         if (remainingBurst[i] > 0) {
+            // Process not finished — back of the queue
             readyQueue.push(i);
         } else {
-            // Process finished, compute wait time
+            // Process is done — calculate its wait time:
             completed++;
             int finishTime = time;
             waitTimes[i] = finishTime - PCBList[i].getArrivalTime() - PCBList[i].getBurst();
