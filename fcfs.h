@@ -1,5 +1,5 @@
 // File: fcfs.h
-// Author: N Neagle, J Holt, and A Seng, Transy U
+// Author: J Holt, N Neagle, and A Seng, Transy U
 // Course: CS 3074 Operating Systems
 //
 // header file for the First Come First Serve scheduling algorithm

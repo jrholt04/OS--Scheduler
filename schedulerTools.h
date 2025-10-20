@@ -1,5 +1,5 @@
 // File schedulerTools.h
-// Author: N Neagle, J Holt, A Seng, Transy U
+// Author: J Holt, N Neagle, and A Seng, Transy U
 // Course: CS 3074 Operating Systems
 //
 // Header file for OS Scheduler Tools

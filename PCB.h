@@ -1,5 +1,5 @@
 // FILE: PCB.h
-// Authors: J Holt, N Neagle, and A Seng, Transylvania University
+// Author: J Holt, N Neagle, and A Seng, Transy U
 // CS 3074, Fall 2025
 
 // Interface - PCB class

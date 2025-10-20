@@ -1,5 +1,5 @@
 // File: nonpresjf.cpp
-// Author: N Neagle, J Holt, and A Seng, Transy U
+// Author: J Holt, N Neagle, and A Seng, Transy U
 // Course: CS 3074 Operating Systems
 //
 // Implementation of Non-Preemptive SJF

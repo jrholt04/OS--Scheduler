@@ -1,6 +1,5 @@
 // FILE: PCBDriver.cpp
-// N Neagle, Transy U
-
+// Author: J Holt, N Neagle, and A Seng, Transy U
 // test driver for PCB Class
 
 #include <iostream>
