@@ -14,14 +14,17 @@ using namespace std;
 
 void fcfs(vector<PCB> processes, bool verbose){
     vector<PCB> scheduledProcesses = createFcfsSchedule(processes);
-    double avgWait = getAvgWait(scheduledProcesses);
+    vector<int> waitTimes;
+    double avgWait = getAvgWait(scheduledProcesses, waitTimes);
+   
 
     if (verbose){
         for (int i = 0; i < scheduledProcesses.size(); i++){
             cout << "id: " << scheduledProcesses[i].getId() << endl;
             cout << "executed for: " << scheduledProcesses[i].getBurst() << endl;
             cout << "enter time: " << scheduledProcesses[i].getArrivalTime() << endl;
-            cout << "execution at: " << scheduledProcesses[i].getStartTime() << endl << endl;
+            cout << "execution at: " << scheduledProcesses[i].getStartTime() << endl;
+            cout << "waited for: " << waitTimes[i] << endl << endl;
         }
     }
     
@@ -47,7 +50,7 @@ vector<PCB> createFcfsSchedule(vector<PCB> processes){
     return scheduledProcesses;
 }
 
-double getAvgWait(vector<PCB>& scheduledProcesses){
+double getAvgWait(vector<PCB>& scheduledProcesses, vector<int>& waitTimes){
     double currentTime = 0.0;
     double totalWait = 0.0;
     double avgWait;
@@ -59,6 +62,7 @@ double getAvgWait(vector<PCB>& scheduledProcesses){
         }
         
         totalWait = totalWait + (currentTime - scheduledProcesses[i].getArrivalTime());
+        waitTimes.push_back((currentTime - scheduledProcesses[i].getArrivalTime()));
         // Updates PCB start time for later reporting.
         scheduledProcesses[i].setStartTime(currentTime); 
         currentTime = currentTime + scheduledProcesses[i].getBurst();

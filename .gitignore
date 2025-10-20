@@ -2,4 +2,7 @@
 *.o
 
 # executable
-sched
+scheduler
+
+#tar files 
+.tar
