@@ -57,6 +57,10 @@ int main (int argc, char **argv) {
        }
        if (arg == "--quanta" || arg == "--q"){
             int inputQuanta = stoi(argv[i + 1]);
+            if (inputQuanta <= 0){
+                cout << "non-valid Quanta" << endl;
+                exit(1);
+            }
             quanta = inputQuanta;
        }
        if (arg == "--preemptive" || arg == "--p"){

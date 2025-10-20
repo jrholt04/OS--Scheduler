@@ -50,7 +50,7 @@ void printSchedulerHelp (void) {
        << "\t\tSelects what scheduling algorithm you would like to select. The default is FCFS." << endl
        << "\t--verbose or --v" << endl
        << "\t\tPrints out a detailed description of the processes and information related to the scheduling" << endl
-       << "\t--quanta {INTEGER} or --q {INTEGER}" << endl
+       << "\t--quanta {INTEGER} or --q {NATURAL NUMBER}" << endl
        << "\t\tInput the quanta value used for Round Robin. The default value is 10." << endl
        << "\t--file {FILEPATH} or --f {FILEPATH}" << endl
        << "\t\tInput the file that conatains the process information used for the schedulers. The file takes the format of rows of ID Arrival_Time Total_CPU_Burst Priority. The default value is sched.in" << endl
