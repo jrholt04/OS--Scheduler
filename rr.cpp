@@ -2,7 +2,7 @@
 // Author: N Neagle, J Holt, and A Seng, Transy U
 // Course: CS 3074 Operating Systems
 //
-// Round Robin
+// Round Robin implementation
 
 #include <iostream>
 #include <vector>
@@ -41,13 +41,11 @@ void rr(vector<PCB> tasks, bool verbose, int quanta) {
 void rrSimulation(vector<PCB> PCBList, vector<int>& waitTimes, vector<int>& startTimes, int quanta) {
     int n = PCBList.size();
     
-    // Initialize remaining burst times for each process.
     vector<int> remainingBurst(n);
     for (int i = 0; i < n; i++) {
         remainingBurst[i] = PCBList[i].getBurst();
     }
-
-    // Create the ready queue for processes ready to run.
+    
     queue<int> readyQueue;
 
     // simulation time, number completed, and next process to add
@@ -69,12 +67,10 @@ void rrSimulation(vector<PCB> PCBList, vector<int>& waitTimes, vector<int>& star
         int i = readyQueue.front();
         readyQueue.pop();
 
-        // record start time
         if (startTimes[i] == -1) {
             startTimes[i] = time;
         }
 
-        // Determine how long the process will run.
         int runTime = min(quanta, remainingBurst[i]);
         remainingBurst[i] -= runTime;
         time += runTime;
@@ -85,10 +81,8 @@ void rrSimulation(vector<PCB> PCBList, vector<int>& waitTimes, vector<int>& star
         }
 
         if (remainingBurst[i] > 0) {
-            // Process not finished — back of the queue
             readyQueue.push(i);
         } else {
-            // Process is done — calculate its wait time:
             completed++;
             int finishTime = time;
             waitTimes[i] = finishTime - PCBList[i].getArrivalTime() - PCBList[i].getBurst();
