@@ -2,7 +2,7 @@
 // Author: J Holt, N Neagle, and A Seng, Transy U
 // Course: CS 3074 Operating Systems
 //
-// Implementation of Preemptive SJF
+// Implementation of Non-Preemptive and Preemptive SJF
 
 #include <iostream>
 #include <vector>
@@ -126,4 +126,5 @@ void presjfSimulation(vector<PCB> PCBList, vector<int>& waitTimes, vector<int>& 
     }
   }
   return;
+
 }
