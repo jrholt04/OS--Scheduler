@@ -19,6 +19,7 @@ double fcfs(vector<PCB> processes, bool verbose){
    
 
     if (verbose){
+      cout << endl << "===== FCFS Execution Details =====" << endl;
         for (int i = 0; i < scheduledProcesses.size(); i++){
             cout << "id: " << scheduledProcesses[i].getId() << endl;
             cout << "executed for: " << scheduledProcesses[i].getBurst() << endl;

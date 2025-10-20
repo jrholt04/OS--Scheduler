@@ -44,18 +44,34 @@ void printVerbose(vector<PCB> PCBList, vector<int> startTimes, vector<int> waitT
 
 void printSchedulerHelp (void) {
   cout << endl << endl
-       << "This is a scheduler simulator, with the ability to simulate First Come First Serve (FCFS), Round Robin (RR), and both preemptive and nonpreemptive Priority and Shortest Job First (SJF)." << endl << endl
+       << "This is a CPU scheduler simulator, with the ability to simulate First Come First Serve (FCFS), Round Robin (RR), and both preemptive and nonpreemptive Priority and Shortest Job First (SJF)." << endl << endl
        << "The program can be called with these command flags: " << endl << endl
-       << "\t--type {FCFS|RR|SJF|Priority}" << endl
-       << "\t\tSelects what scheduling algorithm you would like to select. The default is FCFS." << endl
-       << "\t--verbose or --v" << endl
-       << "\t\tPrints out a detailed description of the processes and information related to the scheduling" << endl
-       << "\t--quanta {INTEGER} or --q {NATURAL NUMBER}" << endl
+       << "\t--type {FCFS|RR|SJF|Priority} or -t {FCFS|RR|SJF|Priority}" << endl
+       << "\t\tSelects what scheduling algorithm you would like to select. The default is value FCFS." << endl
+       << "\t--verbose or -v" << endl
+       << "\t\tPrints out a detailed description of the processes and information related to the scheduling. The default value is false." << endl
+       << "\t--quanta {NATURAL NUMBER} or -q {NATURAL NUMBER}" << endl
        << "\t\tInput the quanta value used for Round Robin. The default value is 10." << endl
-       << "\t--file {FILEPATH} or --f {FILEPATH}" << endl
+       << "\t--file {FILEPATH} or -f {FILEPATH}" << endl
        << "\t\tInput the file that conatains the process information used for the schedulers. The file takes the format of rows of ID Arrival_Time Total_CPU_Burst Priority. The default value is sched.in" << endl
-       << "\t--help or --h" << endl
+       << "\t--help or -h" << endl
        << "\t\tPrints out this helpful how to!" << endl
        << endl;
   return;
+}
+
+string interpretType (string inputType) {
+  if (inputType == "FCFS" || inputType == "fcfs"){
+    return "fcfs";
+  }
+  if (inputType == "RR" || inputType == "rr"){
+    return "rr";
+  }
+  if (inputType == "SJF" || inputType == "sjf"){
+    return "sjf";
+  }
+  if (inputType == "priority" || inputType == "PRIORITY" || inputType == "Priority") {
+    return "priority";
+  }
+  return "error";
 }

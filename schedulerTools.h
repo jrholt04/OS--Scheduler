@@ -23,4 +23,7 @@ void printVerbose(vector<PCB> PCBList, vector<int> startTimes, vector<int> waitT
 // prints out helpful information about the program
 void printSchedulerHelp(void);
 
+// interprets the type given through the command line and returns a string that indicates the selected scheduling algorithm
+string interpretType (string inputType);
+
 #endif  // SCHEDULERTOOLS_H
