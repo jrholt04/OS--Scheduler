@@ -67,8 +67,8 @@ int main (int argc, char **argv) {
             i++;
        }
        if (arg == "--help" || arg == "--h") {
-	 printSchedulerHelp();
-	 return 0;
+            printSchedulerHelp();
+            return 0;
        }
     }
     if (verbose){

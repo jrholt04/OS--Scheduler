@@ -57,13 +57,13 @@ void rrSimulation(vector<PCB> PCBList, vector<int>& waitTimes, vector<int>& star
       time += runTime;
       
       for (int j = 0; j < numberOfProcesses; j++) {
-	if (j != i && remaining[j] > 0 && readyList[j].getArrivalTime() <= time) {
-	  waitTimes[j] += runTime;
-	}
+        if (j != i && remaining[j] > 0 && readyList[j].getArrivalTime() <= time) {
+          waitTimes[j] += runTime;
+        }
       }
       
       if (remaining[i] <= 0) {
-	completed++;
+	      completed++;
       }
     }
     
